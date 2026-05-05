@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atlético Rojiblanco · Predicción Táctica · Fecha 9</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #04060e;
+    --bg-1: #080e1c;
+    --bg-2: #0d1528;
+    --bg-3: #121c34;
+    --line: #1a2540;
+    --text: #edf0f8;
+    --text-dim: #8c96b8;
+    --text-mute: #4a5478;
+    --accent: #1e3a8a;
+    --accent-dim: #1e40af;
+    --accent-glow: rgba(30, 58, 138, 0.3);
+    --club-primary: #1c1c1c;
+    --warn: #f59e0b;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --cyan: #06b6d4;
+    --purple: #a855f7;
+    --pitch-a: #0c5a26;
+    --pitch-b: #074319;
+    --radius-m: 10px;
+    --radius-l: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg-0);
+    color: var(--text);
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(30,58,138,0.07), transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(28,28,28,0.4), transparent 50%),
+      var(--bg-0);
+    background-attachment: fixed;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  /* ==================== HERO ==================== */
+  .hero {
+    text-align: center;
+    padding: 60px 0 50px;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.08), transparent 60%);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding: 6px 16px;
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 999px;
+    background: rgba(59,130,246,0.06);
+  }
+  .hero-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+  .hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(44px, 8vw, 82px);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero-title span {
+    background: linear-gradient(90deg, var(--accent), var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ==================== SECTION ==================== */
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .sh {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sh-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.2px var(--accent);
+    letter-spacing: -1px;
+  }
+  .sh-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .sh-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .sh-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-mute);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ==================== PREDICTED XI ==================== */
+  .xi-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+  }
+
+  .pitch-wrap {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    padding: 22px;
+  }
+  .pitch-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .pitch-label-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .pitch-label-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-mute);
+    letter-spacing: 1.5px;
+  }
+
+  .pitch {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(180deg, var(--pitch-a), var(--pitch-b));
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.08), inset 0 0 80px rgba(0,0,0,0.35);
+  }
+  .pitch::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 8.33%, rgba(255,255,255,0.025) 8.33%, rgba(255,255,255,0.025) 16.66%);
+    pointer-events: none;
+  }
+  .p-line { position: absolute; border-color: rgba(255,255,255,0.2); border-style: solid; border-width: 0; }
+  .p-halfway { top: 50%; left: 0; right: 0; border-top-width: 1.5px; }
+  .p-circle { top: 50%; left: 50%; width: 22%; aspect-ratio: 1; border-width: 1.5px; border-radius: 50%; transform: translate(-50%,-50%); }
+  .p-box-top { top: 0; left: 50%; width: 58%; height: 15%; border-left-width: 1.5px; border-right-width: 1.5px; border-bottom-width: 1.5px; transform: translateX(-50%); }
+  .p-area-top { top: 0; left: 50%; width: 26%; height: 6%; border-left-width: 1.5px; border-right-width: 1.5px; border-bottom-width: 1.5px; transform: translateX(-50%); }
+
+  .pl {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    animation: plFade 0.6s ease backwards;
+  }
+  @keyframes plFade {
+    from { opacity: 0; transform: translate(-50%, calc(-50% - 8px)); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+  .pl:nth-child(2) { animation-delay:0.06s; }
+  .pl:nth-child(3) { animation-delay:0.12s; }
+  .pl:nth-child(4) { animation-delay:0.18s; }
+  .pl:nth-child(5) { animation-delay:0.24s; }
+  .pl:nth-child(6) { animation-delay:0.3s; }
+  .pl:nth-child(7) { animation-delay:0.36s; }
+  .pl:nth-child(8) { animation-delay:0.42s; }
+  .pl:nth-child(9) { animation-delay:0.48s; }
+  .pl:nth-child(10) { animation-delay:0.54s; }
+  .pl:nth-child(11) { animation-delay:0.6s; }
+  .pl:nth-child(12) { animation-delay:0.66s; }
+
+  .pl-dorsal {
+    width: 46px; height: 46px;
+    background: #fff;
+    color: var(--club-primary);
+    border: 3px solid var(--accent);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.25), 0 6px 14px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .pl:hover .pl-dorsal { transform: scale(1.1); transition: 0.15s; }
+  .pl-gk .pl-dorsal { background: #1a1a1a; color: var(--warn); border-color: var(--warn); }
+  .pl-name {
+    margin-top: 5px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .pl-conf {
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .pl-conf.high { background: rgba(34,197,94,0.2); color: var(--success); border: 1px solid rgba(34,197,94,0.4); }
+  .pl-conf.mid { background: rgba(245,158,11,0.2); color: var(--warn); border: 1px solid rgba(245,158,11,0.4); }
+  .pl-conf.low { background: rgba(239,68,68,0.15); color: var(--danger); border: 1px solid rgba(239,68,68,0.4); }
+  .pl-captain {
+    position: absolute;
+    top: -6px; left: -10px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--club-primary);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--club-primary);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.45);
+  }
+
+  /* ==================== CONFIDENCE PANEL ==================== */
+  .conf-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .conf-card {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    padding: 18px 20px;
+  }
+  .conf-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .conf-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: grid; place-items: center;
+    font-size: 14px;
+  }
+  .conf-icon.blue { background: var(--accent); color: #fff; }
+  .conf-icon.amber { background: var(--warn); color: #000; }
+  .conf-icon.red { background: var(--danger); color: #fff; }
+  .conf-icon.green { background: var(--success); color: #fff; }
+  .conf-icon.purple { background: var(--purple); color: #fff; }
+  .conf-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .conf-row {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(30,39,56,0.4);
+  }
+  .conf-row:last-child { border-bottom: none; }
+  .conf-dorsal {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    background: var(--bg-3);
+    border-radius: 4px;
+    padding: 3px 0;
+    text-align: center;
+  }
+  .conf-name {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+  }
+  .conf-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .conf-pct.high { color: var(--success); }
+  .conf-pct.mid { color: var(--warn); }
+  .conf-pct.low { color: var(--danger); }
+
+  /* ==================== GRID LAYOUTS ==================== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .card {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .card.blue::before { background: linear-gradient(90deg, var(--accent), transparent); }
+  .card.amber::before { background: linear-gradient(90deg, var(--warn), transparent); }
+  .card.red::before { background: linear-gradient(90deg, var(--danger), transparent); }
+  .card.green::before { background: linear-gradient(90deg, var(--success), transparent); }
+  .card.purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
+  .card.cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
+
+  .card-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .card-tag.blue { color: var(--accent); background: rgba(59,130,246,0.08); }
+  .card-tag.amber { color: var(--warn); background: rgba(245,158,11,0.08); }
+  .card-tag.red { color: var(--danger); background: rgba(239,68,68,0.08); }
+  .card-tag.green { color: var(--success); background: rgba(34,197,94,0.08); }
+  .card-tag.purple { color: var(--purple); background: rgba(168,85,247,0.08); }
+  .card-tag.cyan { color: var(--cyan); background: rgba(6,182,212,0.08); }
+
+  .card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .card-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .card-body strong { color: var(--accent); font-weight: 600; }
+  .card-body .warn { color: var(--warn); }
+  .card-body .danger { color: var(--danger); }
+  .card-body .success { color: var(--success); }
+
+  /* ==================== SUBSTITUTION TIMELINE ==================== */
+  .sub-timeline {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    gap: 0;
+    padding: 0 20px;
+    position: relative;
+    margin-top: 20px;
+  }
+  .sub-timeline::before {
+    content: '';
+    position: absolute;
+    bottom: 44px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--line);
+  }
+
+  .st-segment {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .st-bar {
+    width: 80%;
+    max-width: 60px;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    transition: all 0.4s ease;
+    min-height: 4px;
+  }
+  .st-bar:hover {
+    filter: brightness(1.3);
+    transform: scaleY(1.05);
+    transform-origin: bottom;
+  }
+  .st-bar-label {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .st-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    color: var(--text-mute);
+    letter-spacing: 1px;
+    margin-top: 12px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* ==================== DEPENDENCY BARS ==================== */
+  .dep-list { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
+  .dep-row { display: grid; grid-template-columns: 100px 1fr 50px; align-items: center; gap: 14px; }
+  .dep-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dep-track {
+    height: 22px;
+    background: var(--bg-3);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .dep-fill {
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+    transition: width 0.8s ease;
+  }
+  .dep-fill.critical { background: linear-gradient(90deg, var(--danger), #f87171); }
+  .dep-fill.high { background: linear-gradient(90deg, var(--warn), #fbbf24); }
+  .dep-fill.medium { background: linear-gradient(90deg, var(--accent), #60a5fa); }
+  .dep-fill.low { background: linear-gradient(90deg, var(--success), #4ade80); }
+  .dep-pct {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  /* ==================== GOAL ZONE CHART ==================== */
+  .zone-chart {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-top: 16px;
+  }
+  .zone-half {
+    background: var(--bg-2);
+    border-radius: 6px;
+    padding: 18px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .zone-half:hover { transform: translateY(-2px); }
+  .zone-half::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.15;
+  }
+  .zone-half.hot::before { height: 60%; background: linear-gradient(0deg, var(--danger), transparent); }
+  .zone-half.warm::before { height: 40%; background: linear-gradient(0deg, var(--warn), transparent); }
+  .zone-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .zone-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+  }
+  .zone-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+    position: relative;
+  }
+
+  /* ==================== RISK TABLE ==================== */
+  .risk-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+  }
+  .risk-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  .risk-table td {
+    padding: 10px 8px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(30,39,56,0.4);
+    vertical-align: middle;
+  }
+  .risk-table tr:hover { background: rgba(59,130,246,0.03); }
+  .risk-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .risk-dot.danger { background: var(--danger); box-shadow: 0 0 6px var(--danger); }
+  .risk-dot.warn { background: var(--warn); box-shadow: 0 0 6px var(--warn); }
+  .risk-dot.ok { background: var(--success); }
+
+  /* ==================== FOOTER ==================== */
+  .footer {
+    margin-top: 60px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-mute);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 1000px) {
+    .xi-layout { grid-template-columns: 1fr; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* TABLET (≤900px) */
+  @media (max-width: 900px) {
+    .container { padding: 28px 16px; }
+    .hero-title { font-size: 56px; line-height: 0.95; }
+    .hero-sub { font-size: 13px; }
+    .sh-title { font-size: 22px; }
+    .pl-dorsal { width: 38px; height: 38px; font-size: 13px; }
+    .pl-name { font-size: 10px; }
+  }
+
+  /* MOBILE (≤640px) */
+  @media (max-width: 640px) {
+    .container { padding: 18px 12px; }
+    .hero { padding: 30px 0 20px; margin-bottom: 32px; }
+    .hero-badge { font-size: 9.5px; padding: 4px 10px; }
+    .hero-title { font-size: 42px; line-height: 0.95; letter-spacing: -1px; }
+    .hero-sub { font-size: 13px; line-height: 1.55; }
+
+    .section { margin-bottom: 36px; }
+    .sh { gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+    .sh-num { font-size: 32px; min-width: 50px; }
+    .sh-title { font-size: 18px; }
+    .sh-sub { font-size: 11px; }
+
+    /* KPIs and cards */
+    .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 12px; }
+    .card { padding: 16px; }
+    .card-title { font-size: 17px; }
+    .card-tag { font-size: 9px; padding: 3px 7px; }
+    .card-body { font-size: 12.5px; }
+
+    /* XI layout (predicción) */
+    .xi-layout { grid-template-columns: 1fr !important; gap: 18px; }
+    .pitch-wrap { padding: 14px; }
+    .pitch-label-title { font-size: 12px; }
+    .pitch-label-meta { font-size: 9.5px; }
+    .pitch { aspect-ratio: 3 / 3.6; }
+    .pl-dorsal { width: 36px; height: 36px; font-size: 12px; }
+    .pl-name { font-size: 9.5px; padding: 2px 5px; max-width: 78px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl-conf { font-size: 8.5px; padding: 1px 4px; }
+
+    /* Confidence panel */
+    .conf-panel { gap: 10px; }
+    .conf-card { padding: 12px; }
+    .conf-card-title { font-size: 12.5px; }
+    .conf-row { padding: 5px 8px; font-size: 12px; }
+    .conf-dorsal { font-size: 10.5px; min-width: 22px; }
+    .conf-name { font-size: 12px; }
+    .conf-pct { font-size: 10.5px; }
+
+    /* Risk table responsive */
+    .risk-table { font-size: 10px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .risk-table thead th { font-size: 9px; padding: 6px 4px; white-space: nowrap; }
+    .risk-table tbody td { padding: 6px 4px; }
+
+    /* Match summary cards */
+    .card[style*="text-align: center"] {
+      padding: 12px 8px !important;
+    }
+    .card[style*="text-align: center"] > div[style*="font-size:28px"],
+    .card[style*="text-align: center"] > div[style*="font-size: 28px"] {
+      font-size: 22px !important;
+    }
+    .card[style*="text-align: center"] > div[style*="font-size:14px"],
+    .card[style*="text-align: center"] > div[style*="font-size: 14px"] {
+      font-size: 11px !important;
+    }
+
+    /* Big stats cards */
+    .card[style*="font-size:36px"],
+    .card div[style*="font-size:36px"] {
+      font-size: 26px !important;
+    }
+
+    /* Zone chart and dep bars */
+    .zone-half { padding: 14px 10px; }
+    .zone-value { font-size: 32px; }
+    .zone-label { font-size: 10px; }
+    .zone-pct { font-size: 9.5px; }
+    .dep-name { font-size: 11.5px; min-width: 70px; }
+    .dep-track { height: 22px; }
+    .dep-fill { font-size: 9.5px; padding: 0 6px; }
+    .dep-pct { font-size: 12px; min-width: 26px; }
+
+    /* Sub timeline */
+    .sub-timeline { gap: 6px; }
+    .st-bar-label { font-size: 11px; }
+    .st-label { font-size: 9px; }
+
+    /* Footer */
+    .footer { font-size: 9px; padding: 18px 0 12px; }
+  }
+
+  /* SMALL MOBILE (≤380px) */
+  @media (max-width: 380px) {
+    .container { padding: 14px 8px; }
+    .hero-title { font-size: 36px; }
+    .pl-dorsal { width: 32px; height: 32px; font-size: 11px; }
+    .pl-name { font-size: 8.5px; max-width: 64px; }
+  }
+
+  /* ==================== ACCESSIBILITY ==================== */
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  /* ==================== PRINT ==================== */
+  @media print {
+    @page { size: A4 portrait; margin: 8mm 7mm; }
+    *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; animation: none !important; }
+    .hero { padding: 20px 0 30px !important; }
+    .hero-title { font-size: 40px !important; }
+    .section { margin-bottom: 24px !important; }
+    .card { padding: 14px !important; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-badge">Scouting Intelligence · Predicción Táctica · 8 Fechas · DT Carlos Santamarina</div>
+    <h1 class="hero-title">Predicción<br><span>Táctica F9</span></h1>
+    <p class="hero-sub">
+      Proyección de <strong style="color:var(--accent)">Atlético Rojiblanco</strong> para F9. <strong style="color:var(--success)">13 pts (3V·4E·0D) — INVICTO</strong>. <strong style="color:var(--danger)">Leitón #70 SUSPENDIDO</strong>. Godoy © y Pita #9 con 2 amarillas — en zona crítica.
+    </p>
+  </div>
+
+  <!-- 00 BALANCE -->
+  <section class="section">
+    <div class="sh"><div class="sh-num">00</div><div class="sh-text"><div class="sh-title">Balance Real · 8 Fechas</div><div class="sh-sub">Liga Ecuabet Serie B · Equipo invicto</div></div></div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;">
+      <div class="card amber" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F1·V</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">Cumbayá</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--warn);">2–2</div><div style="font-size:8px;color:var(--warn);font-family:'JetBrains Mono',monospace;">1 PT</div></div>
+      <div class="card green" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F2·L</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">Vinotinto</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--success);">1–0</div><div style="font-size:8px;color:var(--success);font-family:'JetBrains Mono',monospace;">3 PTS</div></div>
+      <div class="card green" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F3·V</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">9 Octubre</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--success);">2–1</div><div style="font-size:8px;color:var(--success);font-family:'JetBrains Mono',monospace;">3 PTS</div></div>
+      <div class="card green" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F4·L</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">22 Julio</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--success);">1–0</div><div style="font-size:8px;color:var(--success);font-family:'JetBrains Mono',monospace;">3 PTS</div></div>
+      <div class="card amber" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F5·V</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">El Nacional</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--warn);">1–1</div><div style="font-size:8px;color:var(--warn);font-family:'JetBrains Mono',monospace;">1 PT</div></div>
+      <div class="card amber" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F6·L</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">Independiente</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--warn);">1–1</div><div style="font-size:8px;color:var(--warn);font-family:'JetBrains Mono',monospace;">1 PT</div></div>
+      <div class="card amber" style="padding:12px;text-align:center;"><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);text-transform:uppercase;">F7·V</div><div style="font-family:'Oswald',sans-serif;font-size:11px;color:var(--text-dim);margin:3px 0;">San Antonio</div><div style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:var(--warn);">1–1</div><div style="font-size:8px;color:var(--warn);font-family:'JetBrains Mono',monospace;">1 PT</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+      <div class="card blue" style="padding:18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-mute);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Puntos</div><div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--accent);line-height:1;">13</div><div style="font-size:11px;color:var(--text-dim);margin-top:6px;">3V · 4E · 0D · <strong style="color:var(--success)">INVICTO</strong></div></div>
+      <div class="card green" style="padding:18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-mute);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Goles</div><div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--success);line-height:1;">8:5</div><div style="font-size:11px;color:var(--text-dim);margin-top:6px;">+3 dif · 6 goleadores distintos</div></div>
+      <div class="card amber" style="padding:18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-mute);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Disciplina</div><div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--warn);line-height:1;">20</div><div style="font-size:11px;color:var(--text-dim);margin-top:6px;">amarillas · 2.9 por partido</div></div>
+      <div class="card purple" style="padding:18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-mute);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Plantilla</div><div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--purple);line-height:1;">19</div><div style="font-size:11px;color:var(--text-dim);margin-top:6px;">jugadores distintos usados</div></div>
+    </div>
+  </section>
+
+  <!-- 01 XI PREDICHO -->
+  <section class="section">
+    <div class="sh"><div class="sh-num">01</div><div class="sh-text"><div class="sh-title">XI Predicho · Fecha 9</div><div class="sh-sub">Leitón disponible · Godoy © con 2 amarillas · Sistema 4-3-3 · Briones consolidado en CM</div></div></div>
+    <div class="xi-layout">
+      <div class="pitch-wrap">
+        <div class="pitch-label"><div class="pitch-label-title">Pizarra Predicha · 4-3-3</div><div class="pitch-label-meta">Verde = seguro · Amarillo = en duda</div></div>
+        <div class="pitch">
+          <div class="p-line p-halfway"></div><div class="p-line p-circle"></div><div class="p-line p-box-top"></div><div class="p-line p-area-top"></div>
+          <div class="pl pl-gk" style="left:50%;top:10%;"><div class="pl-dorsal">24</div><div class="pl-name">J. MERO</div><div class="pl-conf high">95%</div></div>
+          <div class="pl" style="left:18%;top:30%;"><div class="pl-dorsal">15</div><div class="pl-name">K. BAJANA</div><div class="pl-conf high">85%</div></div>
+          <div class="pl" style="left:38%;top:30%;"><div class="pl-dorsal">21</div><div class="pl-name">R. RIOS</div><div class="pl-conf high">95%</div></div>
+          <div class="pl" style="left:62%;top:30%;"><div class="pl-dorsal">3</div><div class="pl-name">C. MICOLTA</div><div class="pl-conf high">95%</div></div>
+          <div class="pl" style="left:82%;top:30%;"><div class="pl-dorsal">4</div><div class="pl-name">J. ESTRADA</div><div class="pl-conf mid">75%</div></div>
+          <div class="pl" style="left:28%;top:57%;"><div class="pl-dorsal">30<div class="pl-captain">C</div></div><div class="pl-name">W. GODOY</div><div class="pl-conf high">95%</div></div>
+          <div class="pl" style="left:50%;top:57%;"><div class="pl-dorsal">17</div><div class="pl-name">J. ESPINOZA</div><div class="pl-conf high">85%</div></div>
+          <div class="pl" style="left:72%;top:57%;"><div class="pl-dorsal">27</div><div class="pl-name">G. ESTACIO</div><div class="pl-conf mid">60%</div></div>
+          <div class="pl" style="left:22%;top:82%;"><div class="pl-dorsal">11</div><div class="pl-name">D. OVANDO</div><div class="pl-conf mid">70%</div></div>
+          <div class="pl" style="left:50%;top:82%;"><div class="pl-dorsal">9</div><div class="pl-name">J. PITA</div><div class="pl-conf high">95%</div></div>
+          <div class="pl" style="left:78%;top:82%;"><div class="pl-dorsal">10</div><div class="pl-name">F. MARTINEZ</div><div class="pl-conf mid">65%</div></div>
+        </div>
+      </div>
+      <div class="conf-panel">
+        <div class="conf-card">
+          <div class="conf-card-head"><div class="conf-icon green">✓</div><div class="conf-card-title">Titulares seguros</div></div>
+          <div class="conf-row"><div class="conf-dorsal">24</div><div class="conf-name">Mero (GK)</div><div class="conf-pct high">95%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">21</div><div class="conf-name">Ríos (CB)</div><div class="conf-pct high">95%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">3</div><div class="conf-name">Micolta (CB)</div><div class="conf-pct high">95%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">9</div><div class="conf-name">Pita (ST) — 4 goles</div><div class="conf-pct high">95%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">30</div><div class="conf-name">Godoy © CM</div><div class="conf-pct high">95%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">17</div><div class="conf-name">Espinoza CM</div><div class="conf-pct high">85%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">15</div><div class="conf-name">Bajaña LB</div><div class="conf-pct high">85%</div></div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-head"><div class="conf-icon red">✗</div><div class="conf-card-title">Suspendido</div></div>
+          <div class="conf-row"><div class="conf-dorsal">70</div><div class="conf-name">Leitón</div><div class="conf-pct low">0%</div></div>
+          <div style="font-size:10.5px;color:var(--text-mute);margin-top:8px;padding-top:8px;border-top:1px solid var(--line);line-height:1.5;"><strong style="color:var(--danger)">3ª amarilla</strong> al 7' en F7. Suspendido automáticamente. Era CM titular y también RB en F4. Su baja abre hueco en el mediocampo.</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-head"><div class="conf-icon amber">⚠</div><div class="conf-card-title">En duda</div></div>
+          <div class="conf-row"><div class="conf-dorsal">4</div><div class="conf-name">Estrada (2 amar.)</div><div class="conf-pct mid">75%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">11</div><div class="conf-name">Ovando LW</div><div class="conf-pct mid">70%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">27</div><div class="conf-name">Estacio CM</div><div class="conf-pct mid">60%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">10</div><div class="conf-name">Martínez RW</div><div class="conf-pct mid">65%</div></div>
+          <div style="font-size:10.5px;color:var(--text-mute);margin-top:8px;padding-top:8px;border-top:1px solid var(--line);line-height:1.5;">Estrado tiene 2 amarillas — el DT puede preservarlo. La posición de CM por Leitón es la disputa clave.</div>
+        </div>
+        <div class="conf-card">
+          <div class="conf-card-head"><div class="conf-icon purple">↔</div><div class="conf-card-title">Candidatos a cubrir Leitón</div></div>
+          <div class="conf-row"><div class="conf-dorsal">27</div><div class="conf-name">Estacio</div><div class="conf-pct mid">60%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">8</div><div class="conf-name">Briones</div><div class="conf-pct low">45%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">2</div><div class="conf-name">Reasco (RB)</div><div class="conf-pct low">35%</div></div>
+          <div class="conf-row"><div class="conf-dorsal">33</div><div class="conf-name">Pucheta</div><div class="conf-pct low">30%</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 DISCIPLINA -->
+  <section class="section">
+    <div class="sh"><div class="sh-num">02</div><div class="sh-text"><div class="sh-title">Riesgo Disciplinario</div><div class="sh-sub">20 amarillas en 7 partidos · 5 jugadores en zona crítica</div></div></div>
+    <div class="card amber">
+      <div class="card-body" style="margin-bottom:18px;"><strong>20 amarillas en 7 partidos</strong> (2.9 por partido). La disciplina es el mayor riesgo del equipo. <strong class="danger">5 jugadores a una tarjeta de la suspensión.</strong></div>
+      <table class="risk-table">
+        <thead><tr><th>#</th><th>Jugador</th><th>Tarjetas</th><th>Estado</th><th>Riesgo</th><th>F8</th></tr></thead>
+        <tbody>
+          <tr><td><strong>70</strong></td><td><strong>D. LEITON</strong></td><td><span class="risk-dot danger"></span>3 amarillas</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--danger);">SUSPENDIDO</td><td style="color:var(--danger);font-weight:700;">FUERA</td><td style="font-size:11px;color:var(--text-dim);">No disponible. Estacio/Briones cubren su puesto en CM</td></tr>
+          <tr><td><strong>9</strong></td><td><strong>J. PITA ★</strong></td><td><span class="risk-dot danger"></span>2 amarillas</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;">F1(38') · F2(68')</td><td style="color:var(--danger);font-weight:700;">ALTO</td><td style="font-size:11px;color:var(--text-dim);">Goleador líder (4 goles). Si ve amarilla queda suspendido</td></tr>
+          <tr><td><strong>30</strong></td><td><strong>W. GODOY ©</strong></td><td><span class="risk-dot danger"></span>2 amarillas</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;">F3(43') · F7(12')</td><td style="color:var(--danger);font-weight:700;">ALTO</td><td style="font-size:11px;color:var(--text-dim);">Capitán irremplazable. Su baja sería devastadora</td></tr>
+          <tr><td><strong>24</strong></td><td><strong>J. MERO (GK)</strong></td><td><span class="risk-dot danger"></span>2 amarillas</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;">F2(85') · F3(64')</td><td style="color:var(--danger);font-weight:700;">ALTO</td><td style="font-size:11px;color:var(--text-dim);">Portero titular. Medranda #22 nunca ha jugado en el torneo</td></tr>
+          <tr><td><strong>4</strong></td><td><strong>J. ESTRADA</strong></td><td><span class="risk-dot danger"></span>2 amarillas</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;">F1(79') · F2(37')</td><td style="color:var(--warn);font-weight:700;">MEDIO</td><td style="font-size:11px;color:var(--text-dim);">El DT ya lo preservó en F4. Puede rotar de nuevo</td></tr>
+          <tr><td><strong>15</strong></td><td><strong>K. BAJANA</strong></td><td><span class="risk-dot warn"></span>1 amarilla</td><td style="font-family:'JetBrains Mono',monospace;font-size:10px;">F6(44')</td><td style="color:var(--text-mute);font-weight:700;">BAJO</td><td style="font-size:11px;color:var(--text-dim);">LB estable sin reincidencia relevante</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 03 GOLEADORES -->
+  <section class="section">
+    <div class="sh"><div class="sh-num">03</div><div class="sh-text"><div class="sh-title">Amenaza Goleadora</div><div class="sh-sub">8 goles · 6 goleadores distintos · Alta distribución ofensiva</div></div></div>
+    <div class="grid-2">
+      <div class="card red">
+        <div class="card-tag red">Distribución</div><div class="card-title">Goles repartidos en los dos tiempos</div>
+        <div class="card-body" style="margin-bottom:14px;">El equipo no tiene una ventana fija de peligro — marca en cualquier momento. Destacan los goles tempranos (Pita 8' en F1, Martínez 16' en F3, Pita 18' en F7) y los tardíos (Cifuentes 88' en F4, Godoy 90+6' en F6).</div>
+        <div class="zone-chart">
+          <div class="zone-half warm"><div class="zone-label">1er Tiempo</div><div class="zone-value" style="color:var(--warn);">4</div><div class="zone-pct" style="color:var(--warn);">50% goles</div></div>
+          <div class="zone-half warm"><div class="zone-label">2do Tiempo</div><div class="zone-value" style="color:var(--warn);">4</div><div class="zone-pct" style="color:var(--warn);">50% goles</div></div>
+        </div>
+      </div>
+      <div class="card amber">
+        <div class="card-tag amber">Goleadores</div><div class="card-title">6 goleadores distintos — sin dependencia</div>
+        <div class="dep-list">
+          <div class="dep-row"><div class="dep-name">#9 Pita</div><div class="dep-track"><div class="dep-fill high" style="width:50%;">4 goles · F1(8') F1(69')? F2(67') F7(18')</div></div><div class="dep-pct" style="color:var(--warn);">50%</div></div>
+          <div class="dep-row"><div class="dep-name">#21 Ríos</div><div class="dep-track"><div class="dep-fill medium" style="width:12%;">1 gol · F1(69')</div></div><div class="dep-pct" style="color:var(--accent);">12%</div></div>
+          <div class="dep-row"><div class="dep-name">#10 Martínez</div><div class="dep-track"><div class="dep-fill medium" style="width:12%;">1 gol · F3(16')</div></div><div class="dep-pct" style="color:var(--accent);">12%</div></div>
+          <div class="dep-row"><div class="dep-name">#11 Ovando</div><div class="dep-track"><div class="dep-fill medium" style="width:12%;">1 gol · F3(17')</div></div><div class="dep-pct" style="color:var(--accent);">12%</div></div>
+          <div class="dep-row"><div class="dep-name">#88 Cifuentes</div><div class="dep-track"><div class="dep-fill medium" style="width:12%;">1 gol · F4(88')</div></div><div class="dep-pct" style="color:var(--accent);">12%</div></div>
+          <div class="dep-row"><div class="dep-name">#30 Godoy ©</div><div class="dep-track"><div class="dep-fill medium" style="width:12%;">1 gol · F6(90+6')</div></div><div class="dep-pct" style="color:var(--accent);">12%</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 RESUMEN -->
+  <section class="section">
+    <div class="sh"><div class="sh-num">04</div><div class="sh-text"><div class="sh-title">Resumen Ejecutivo para el Rival</div><div class="sh-sub">Cómo atacar y defenderse en F9</div></div></div>
+    <div class="grid-2">
+      <div class="card green">
+        <div class="card-tag green">Cómo atacarlos</div><div class="card-title">Recomendaciones ofensivas</div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px;">
+          <div><strong>1. Atacar el hueco de Leitón.</strong> El CM suspendido deja un espacio en el mediocampo. Quien lo reemplace (Estacio, Briones) tiene menos rodaje. Presionar por esa zona en los primeros 20 minutos.</div>
+          <div><strong>2. Provocar a Pita, Godoy y Mero.</strong> Los tres con 2 amarillas. Forzar duelos físicos puede llevarlos a la suspensión — pérdida del goleador, el capitán o el portero en una misma fecha.</div>
+          <div><strong>3. Atacar por el lateral derecho.</strong> Estrada (#4) con 2 amarillas puede salir del XI o jugar con miedo. Alternativas como Reasco #2 son menos experimentadas en ese puesto.</div>
+          <div><strong>4. No descuidar el final del partido.</strong> El equipo marcó en el 88' (Cifuentes) y 90+6' (Godoy). Mantener concentración hasta el pitido final es vital contra este rival.</div>
+        </div>
+      </div>
+      <div class="card red">
+        <div class="card-tag red">Cómo defenderse</div><div class="card-title">Recomendaciones defensivas</div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px;">
+          <div><strong>1. Doble marca a Pita (#9).</strong> 4 goles en 7 fechas — el 50% de la producción ofensiva. ST con dinamismo y lectura de espacios. Es LA amenaza principal.</div>
+          <div><strong>2. Cortar a Godoy (#30) en distribución.</strong> El capitán es el eje del mediocampo. Si no recibe con tiempo, el equipo pierde fluidez vertical. Marca estrecha desde el primer minuto.</div>
+          <div><strong>3. Cuidado con el banco.</strong> Cifuentes (#88) marcó el 88' en F4 entrando al 18'. El equipo tiene recambios que pueden cambiar el partido desde el banco — no bajar la guardia con los suplentes.</div>
+          <div><strong>4. Los primeros 20 minutos son críticos.</strong> Goles a los 7', 8', 16', 17', 18' — el equipo arranca con intensidad máxima. Resistir el inicio y gestionar su agresividad temprana.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Atletico Rojiblanco · Prediccion Tactica F9 · 7 Fechas · Liga Ecuabet Serie B · 2025</div>
+</div>
+</body>
+</html>
